@@ -18,3 +18,8 @@ export const useGetPost= (id) => {
     const {data, error, ...rest} = useSWR(id ? `/api/v1/posts/${id}` : null, fetcher);
     return {data, error, loading:!data && !error, ...rest}
 }
+
+export const useGetUsers= () => {
+    const {data, error, ...rest} = useSWR(`/api/v1/users`, fetcher);
+    return {data, error, loading:!data && !error, ...rest}
+}

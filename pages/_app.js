@@ -4,9 +4,10 @@ import {ThemeProvider} from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import '../styles/globals.css'
 import theme from "../components/themes/theme.js";
-import Navbar from "../components/Navbar.js";
+import Navbar from "../components/navbar";
+import {wrapper} from "../components/redux/store";
 
-function MyApp({Component, pageProps}) {
+const MyApp = ({Component, pageProps}) => {
 
     React.useEffect(() => {
         // Remove the server-side injected CSS.
@@ -29,7 +30,7 @@ function MyApp({Component, pageProps}) {
                 <Component {...pageProps} />
             </ThemeProvider>
         </React.Fragment>
-    );
+    )
 }
 
-export default MyApp
+export default wrapper.withRedux(MyApp);
