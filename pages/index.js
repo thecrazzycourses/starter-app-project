@@ -1,27 +1,35 @@
-import {Component} from "react";
-import {connect} from "react-redux";
-import {getUsersRequest} from "../components/redux/actions/users.js";
+import {useGetUsers} from "../actions";
+import React from "react";
 
-class Index extends Component {
-  componentDidMount() {
-    this.props.getUsersRequest();
-  }
+const Index = () => {
 
-  render() {
-    const {items} = this.props.users;
+    const {data, error, loading} = useGetUsers();
+
     return (
         <div>
-          <h1>Users List</h1>
-          <ul>
-            {items.map(item => (
-                <li key={item.id}>{item.firstName} {item.lastName}</li>
-            ))}
-          </ul>
+            <h1>Users List</h1>
+
+            {
+                loading &&
+                <div>Loading</div>
+
+            }
+
+            {
+                error &&
+                <div>{error.message}</div>
+            }
+
+            {
+                data &&
+                <ul>
+                    {data.data.map(item => (
+                        <li key={item.id}>{item.firstName} {item.lastName}</li>
+                    ))}
+                </ul>
+            }
         </div>
     )
-  }
 }
 
-export default connect(({users}) => ({users}), {
-  getUsersRequest
-})(Index);
+export default Index;

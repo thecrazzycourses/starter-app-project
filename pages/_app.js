@@ -5,7 +5,6 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import '../styles/globals.css'
 import theme from "../components/themes/theme.js";
 import Navbar from "../components/navbar";
-import {wrapper} from "../components/redux/store";
 
 const MyApp = ({Component, pageProps}) => {
 
@@ -33,4 +32,4 @@ const MyApp = ({Component, pageProps}) => {
     )
 }
 
-export default wrapper.withRedux(MyApp);
+export default MyApp;
